@@ -15,6 +15,7 @@ class Game {
     this.background = new Image();
     this.controls = null;
     this.lifes = 4;
+    this.invulnerable = false;
     // this.gamespeed = 2;
     }
 
@@ -52,15 +53,17 @@ class Game {
         this.tsubasa.draw();
         this.updateObstacles();
         this.checkGameOver();
-
         this.score();
         this.showLifes();
+        if(this.lifes <= 0){
+        this.stop();
+        }
     }
 
     updateObstacles() {
        // enemy 1
         for (let i = 0; i < this.obstacles1.length; i++) {
-          this.obstacles1[i].x -= 4;
+          this.obstacles1[i].x -= 6;
           this.obstacles1[i].draw();
         }
     
@@ -80,7 +83,7 @@ class Game {
 
         // enemy 3
         for (let i = 0; i < this.obstacles3.length; i++) {
-            this.obstacles3[i].x -= 6;
+            this.obstacles3[i].x -= 8;
             this.obstacles3[i].draw();
         }
       
@@ -88,54 +91,60 @@ class Game {
             this.obstacles3.push(new Enemy3(this.ctx));
         }
 
-
         // adding the goalscores
-        for (let i = 0; i < this.obstacles.length; i++) {
-            this.obstacles[i].x -= 5;
-            this.obstacles[i].draw();
-        }
-         
-            if (this.frames % 205 === 0) {
-            let x = 700;
-            //calculate the height of the columns/obstacles
-            let minHeight = 20;
-            let maxHeight = 300;
-            let height = Math.floor(Math.random() * (maxHeight - minHeight + 1) + minHeight);
-            //this creates the gap
-            let gap = 120;
-            //top obstacle
-            this.obstacles.push(new Goalscore(x, 0, 3, height, 'white', this.ctx));
-            //bottom obstacle
-            this.obstacles.push(new Goalscore(x, height + gap, 3, x - height - gap, 'white', this.ctx));
-        }
-    }
-      
-
-    checkGameOver = () => {
-       /*  const crashed = this.obstacles.some((obstacle) => {
-        return this.tsubasa.crashWith(obstacle);
-        });
-        if (crashed) { */
-        let crashed = false
-        
-        for(let i = 0; i < this.obstacles.length; i++){
-            if(this.tsubasa.crashWith(this.obstacles[i])){
-                this.obstacles.splice(i,1)
-                this.lifes -= 1;
-                crashed = true
-            if(this.lifes === 0){
-                this.stop();
+        if(this.obstacles.length){
+            for (let i = 0; i < this.obstacles.length; i++) {
+           
+                 if(this.tsubasa.x >= this.obstacles[0].x + this.obstacles[0].w && !this.invulnerable && !(this.tsubasa.y > this.obstacles[0].y && this.tsubasa.y < this.obstacles[1].y)){
+                    this.lifes--
+                    this.invulnerable = true
+            
+                } 
+                this.obstacles[i].x -= 5;
+                this.obstacles[i].draw();
             }
         }
+            if (this.frames % 205 === 0) {
+                this.obstacles = []
+                this.invulnerable = false;
+                
+                let x = 700;
+                //calculate the height of the columns/obstacles
+                let minHeight = 20;
+                let maxHeight = 250;
+                let height = Math.floor(Math.random() * (maxHeight - minHeight + 1) + minHeight);
+                //this creates the gap
+                let gap = 120;
+                //top obstacle
+                this.obstacles.push(new Goalscore(x, height, 20, 30, this.ctx));
+          
+                //bottom obstacle
+                this.obstacles.push(new Goalscore(x, height + gap, 20, 30, this.ctx));
+         
+// sometimes I lose 1 life from "nowhere"
+            
+        }
     }
+
+    checkGameOver = () => {
+        let crashed = false
+        
+// commented out because when hitting the top cone, it would take 2 lifes
+// 1 when hit, 1 when cone reaches x = 0 (i guess)
+// when hitting bottom cone -> y is not defined
+
+  /*   for(let i = 0; i < this.obstacles.length; i++){
+        if(this.tsubasa.crashWithGoal(this.obstacles[i])){
+            this.obstacles.splice(i,1)
+            this.lifes -= 1;
+            crashed = true
+        }
+    } */
     for(let i = 0; i < this.obstacles1.length; i++){
         if(this.tsubasa.crashWith(this.obstacles1[i])){
             this.obstacles1.splice(i,1)
             this.lifes -= 1;
             crashed = true
-        if(this.lifes === 0){
-            this.stop();
-        }
     }
 }
 for(let i = 0; i < this.obstacles2.length; i++){
@@ -143,9 +152,6 @@ for(let i = 0; i < this.obstacles2.length; i++){
         this.obstacles2.splice(i,1)
         this.lifes -= 1;
         crashed = true
-    if(this.lifes === 0){
-        this.stop();
-    }
 }
 }
 for(let i = 0; i < this.obstacles3.length; i++){
@@ -153,9 +159,6 @@ for(let i = 0; i < this.obstacles3.length; i++){
         this.obstacles3.splice(i,1)
         this.lifes -= 1;
         crashed = true
-    if(this.lifes === 0){
-        this.stop();
-    }
 }
 }
     }
@@ -168,7 +171,7 @@ for(let i = 0; i < this.obstacles3.length; i++){
     showLifes() {
         this.ctx.font = '20px monospace';
         this.ctx.fillStyle = 'black';
-        this.ctx.fillText(`Lifes: ${this.lifes}`, 600, 450);
+        this.ctx.fillText(`Lifes: ${this.lifes}`, 580, 450);
     }
     
     
@@ -176,6 +179,6 @@ for(let i = 0; i < this.obstacles3.length; i++){
         this.ctx.font = '20px monospace';
         this.ctx.fillStyle = 'black';
         const score = Math.floor(this.frames / 50);
-        this.ctx.fillText(`Score: ${score}`, 600, 50);
+        this.ctx.fillText(`Score: ${score}`, 580, 50);
     }
 }
