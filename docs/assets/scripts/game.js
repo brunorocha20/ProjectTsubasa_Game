@@ -16,28 +16,30 @@ class Game {
     this.controls = null;
     this.lifes = 4;
     this.invulnerable = false;
-    // this.gamespeed = 2;
+    this.backSpeed = -3;
+    this.backX = 0;
+    this.background.src = '/docs/assets/images/actual field.jpg';
+    this.currentImg = 0;
     }
 
 
     drawBackground() {
-    this.background.src = '/docs/assets/images/actual field.jpg';
-    this.ctx.drawImage(this.background, 0, 0, this.width, this.height);
-
-    /* const background = {
-    x1: 0,
-    x2: canvas.width,
-    y: 0,
-    width: canvas.width,
-    height: canvas.height
+    this.ctx.drawImage(this.background, this.backX, 0, this.width, this.height);
+    if (this.backSpeed < 0) {
+        this.ctx.drawImage(this.background, this.backX + this.width, 0, this.width, this.height);
+      } else {
+        this.ctx.drawImage(this.background, this.backX - this.width, 0, this.width, this.height);
+      }
     }
 
-    if (background.x1 <= -background.width + gamespeed) background.x1 = background.width;
-    else background.x1 -= gamespeed;
-    if (background.x2 <= -background.width + gamespeed) background.x2 = background.width;
-    else background.x2 -= gamespeed;
-    this.ctx.drawImage(this.background, background.x1, background.y, background.width, background.height);
-    this.ctx.drawImage(this.background, background.x2, background.y, background.width, background.height); */
+    clearBg(){
+        this.ctx.clearRect(0,0,this.width,this.height);
+    }
+
+    moveBackground() {
+    this.backX += this.backSpeed;
+    this.backX %= this.width;
+
     }
 
     start(){
@@ -49,7 +51,10 @@ class Game {
 
     update = () => {
         this.frames++;
+        this.clearBg();
+        this.moveBackground();
         this.drawBackground();
+        this.movePlayer();
         this.tsubasa.draw();
         this.updateObstacles();
         this.checkGameOver();
@@ -92,7 +97,7 @@ class Game {
         }
 
         // adding the goalscores
-        if(this.obstacles.length){
+        if(this.obstacles.length === 2){
             for (let i = 0; i < this.obstacles.length; i++) {
            
                  if(this.tsubasa.x >= this.obstacles[0].x + this.obstacles[0].w && !this.invulnerable && !(this.tsubasa.y > this.obstacles[0].y && this.tsubasa.y < this.obstacles[1].y)){
@@ -120,8 +125,6 @@ class Game {
           
                 //bottom obstacle
                 this.obstacles.push(new Goalscore(x, height + gap, 20, 30, this.ctx));
-         
-// sometimes I lose 1 life from "nowhere"
             
         }
     }
@@ -129,17 +132,14 @@ class Game {
     checkGameOver = () => {
         let crashed = false
         
-// commented out because when hitting the top cone, it would take 2 lifes
-// 1 when hit, 1 when cone reaches x = 0 (i guess)
-// when hitting bottom cone -> y is not defined
 
-  /*   for(let i = 0; i < this.obstacles.length; i++){
+    for(let i = 0; i < this.obstacles.length; i++){
         if(this.tsubasa.crashWithGoal(this.obstacles[i])){
             this.obstacles.splice(i,1)
             this.lifes -= 1;
             crashed = true
         }
-    } */
+    }
     for(let i = 0; i < this.obstacles1.length; i++){
         if(this.tsubasa.crashWith(this.obstacles1[i])){
             this.obstacles1.splice(i,1)
@@ -180,5 +180,27 @@ for(let i = 0; i < this.obstacles3.length; i++){
         this.ctx.fillStyle = 'black';
         const score = Math.floor(this.frames / 50);
         this.ctx.fillText(`Score: ${score}`, 580, 50);
+    }
+
+    movePlayer(){
+        if(this.frames % 60 === 0){
+            this.currentImg = (this.currentImg + 1) % 2
+            switch (this.currentImg){
+                case 0:
+                    this.tsubasa.img.src = '/docs/assets/images/oliver_ball_sprite-removebg.png'
+                    break;
+                case 1:
+                    this.tsubasa.img.src = '/docs/assets/images/oliver-logo-removebg-preview.png'
+                    break;    
+        }
+            /* if(this.tsubasa.img.src === '/docs/assets/images/oliver-logo-removebg-preview.png'){
+                this.tsubasa.img.src = '/docs/assets/images/oliver_ball_sprite-removebg.png'
+                console.log('here')
+            } else {
+                this.tsubasa.img.src = '/docs/assets/images/oliver-logo-removebg-preview.png'
+                console.log('else')
+            } */
+
+        }
     }
 }

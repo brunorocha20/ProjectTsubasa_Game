@@ -6,10 +6,10 @@ class Player {
       this.h = h;
       this.ctx = ctx;
       this.img = new Image();
+      this.img.src = '/docs/assets/images/oliver_ball_sprite-removebg.png';
     }
   
     draw() {
-      this.img.src = '/docs/assets/images/oliver_ball_sprite-removebg.png';
       this.ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
     }
     
