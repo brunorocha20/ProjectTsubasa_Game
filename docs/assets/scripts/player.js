@@ -6,7 +6,7 @@ class Player {
       this.h = h;
       this.ctx = ctx;
       this.img = new Image();
-      this.img.src = 'docs/assets/images/oliver_ball_sprite-removebg.png';
+      this.img.src = '/docs/assets/images/running1-removebg-preview.png';
     }
   
     draw() {

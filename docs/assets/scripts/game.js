@@ -39,7 +39,6 @@ class Game {
     moveBackground() {
     this.backX += this.backSpeed;
     this.backX %= this.width;
-
     }
 
     start(){
@@ -60,7 +59,8 @@ class Game {
         this.checkGameOver();
         this.score();
         this.showLifes();
-        if(this.lifes <= 0){
+        if(this.lifes <= 0){  
+        document.getElementById("game-end").style.display = "flex";
         this.stop();
         }
     }
@@ -68,11 +68,11 @@ class Game {
     updateObstacles() {
        // enemy 1
         for (let i = 0; i < this.obstacles1.length; i++) {
-          this.obstacles1[i].x -= 6;
+          this.obstacles1[i].x -= 8;
           this.obstacles1[i].draw();
         }
     
-            if (this.frames % 240 === 0) {
+        if (this.frames % 240 === 0) {
           this.obstacles1.push(new Enemy(this.ctx));
         }
 
@@ -82,17 +82,17 @@ class Game {
             this.obstacles2[i].draw();
         }
  
-            if (this.frames % 180 === 0) {
+        if (this.frames % 180 === 0) {
             this.obstacles2.push(new Enemy2(this.ctx));
         }
 
         // enemy 3
         for (let i = 0; i < this.obstacles3.length; i++) {
-            this.obstacles3[i].x -= 8;
+            this.obstacles3[i].x -= 10;
             this.obstacles3[i].draw();
         }
       
-            if (this.frames % 300 === 0) {
+        if (this.frames % 300 === 0) {
             this.obstacles3.push(new Enemy3(this.ctx));
         }
 
@@ -103,7 +103,6 @@ class Game {
                  if(this.tsubasa.x >= this.obstacles[0].x + this.obstacles[0].w && !this.invulnerable && !(this.tsubasa.y > this.obstacles[0].y && this.tsubasa.y < this.obstacles[1].y)){
                     this.lifes--
                     this.invulnerable = true
-            
                 } 
                 this.obstacles[i].x -= 5;
                 this.obstacles[i].draw();
@@ -125,7 +124,6 @@ class Game {
           
                 //bottom obstacle
                 this.obstacles.push(new Goalscore(x, height + gap, 20, 30, this.ctx));
-            
         }
     }
 
@@ -133,34 +131,34 @@ class Game {
         let crashed = false
         
 
-    for(let i = 0; i < this.obstacles.length; i++){
-        if(this.tsubasa.crashWithGoal(this.obstacles[i])){
+        for(let i = 0; i < this.obstacles.length; i++){
+            if(this.tsubasa.crashWithGoal(this.obstacles[i])){
             this.obstacles.splice(i,1)
             this.lifes -= 1;
             crashed = true
         }
     }
-    for(let i = 0; i < this.obstacles1.length; i++){
-        if(this.tsubasa.crashWith(this.obstacles1[i])){
+        for(let i = 0; i < this.obstacles1.length; i++){
+            if(this.tsubasa.crashWith(this.obstacles1[i])){
             this.obstacles1.splice(i,1)
             this.lifes -= 1;
             crashed = true
+        }
     }
-}
-for(let i = 0; i < this.obstacles2.length; i++){
-    if(this.tsubasa.crashWith(this.obstacles2[i])){
-        this.obstacles2.splice(i,1)
-        this.lifes -= 1;
-        crashed = true
-}
-}
-for(let i = 0; i < this.obstacles3.length; i++){
-    if(this.tsubasa.crashWith(this.obstacles3[i])){
-        this.obstacles3.splice(i,1)
-        this.lifes -= 1;
-        crashed = true
-}
-}
+        for(let i = 0; i < this.obstacles2.length; i++){
+            if(this.tsubasa.crashWith(this.obstacles2[i])){
+            this.obstacles2.splice(i,1)
+            this.lifes -= 1;
+            crashed = true
+        }
+    }
+        for(let i = 0; i < this.obstacles3.length; i++){
+            if(this.tsubasa.crashWith(this.obstacles3[i])){
+            this.obstacles3.splice(i,1)
+            this.lifes -= 1;
+            crashed = true
+        }
+    }
     }
     
     
@@ -174,7 +172,6 @@ for(let i = 0; i < this.obstacles3.length; i++){
         this.ctx.fillText(`Lifes: ${this.lifes}`, 580, 450);
     }
     
-    
     score() {
         this.ctx.font = '20px monospace';
         this.ctx.fillStyle = 'black';
@@ -183,24 +180,16 @@ for(let i = 0; i < this.obstacles3.length; i++){
     }
 
     movePlayer(){
-        if(this.frames % 60 === 0){
+        if(this.frames % 20 === 0){
             this.currentImg = (this.currentImg + 1) % 2
             switch (this.currentImg){
                 case 0:
-                    this.tsubasa.img.src = 'docs/assets/images/oliver_ball_sprite-removebg.png'
+                    this.tsubasa.img.src = '/docs/assets/images/running1-removebg-preview.png'
                     break;
                 case 1:
-                    this.tsubasa.img.src = 'docs/assets/images/oliver-logo-removebg-preview.png'
+                    this.tsubasa.img.src = '/docs/assets/images/running2-removebg-preview.png'
                     break;    
-        }
-            /* if(this.tsubasa.img.src === '/docs/assets/images/oliver-logo-removebg-preview.png'){
-                this.tsubasa.img.src = '/docs/assets/images/oliver_ball_sprite-removebg.png'
-                console.log('here')
-            } else {
-                this.tsubasa.img.src = '/docs/assets/images/oliver-logo-removebg-preview.png'
-                console.log('else')
-            } */
-
+            }
         }
     }
 }

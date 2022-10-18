@@ -2,15 +2,15 @@ class Enemy {
     constructor(ctx) {
       this.ctx = ctx;
       this.x = 700;
-      this.y = Math.floor(Math.random() * 500) - 120;
-      this.w = 40;
-      this.h = 25;
-      this.color = `red`;
+      this.y = Math.floor(Math.random() * 500) - 150;
+      this.w = 90;
+      this.h = 110;
+      this.img = new Image();
     }
   
     draw() {
-      this.ctx.fillStyle = this.color;
-      this.ctx.fillRect(this.x, this.y, this.w, this.h);
+      this.img.src = 'docs/assets/images/goalkeeper.png'
+      this.ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
     }
   
     top() {
@@ -32,15 +32,15 @@ class Enemy2 {
     constructor(ctx) {
       this.ctx = ctx;
       this.x = 700;
-      this.y = Math.floor(Math.random() * 500) - 100;
-      this.w = 30;
-      this.h = 20;
-      this.color = `black`;
+      this.y = Math.floor(Math.random() * 500) - 50;
+      this.w = 90;
+      this.h = 52;
+      this.img = new Image();
     }
   
     draw() {
-      this.ctx.fillStyle = this.color;
-      this.ctx.fillRect(this.x, this.y, this.w, this.h);
+      this.img.src = '/docs/assets/images/german.png'
+      this.ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
     }
   
     top() {
@@ -62,15 +62,15 @@ class Enemy3 {
     constructor(ctx) {
       this.ctx = ctx;
       this.x = 700;
-      this.y = Math.floor(Math.random() * 500) - 80;
-      this.w = 50;
-      this.h = 30;
-      this.color = `orange`;
+      this.y = Math.floor(Math.random() * 500) - 60;
+      this.w = 80;
+      this.h = 60;
+      this.img = new Image();
     }
   
     draw() {
-      this.ctx.fillStyle = this.color;
-      this.ctx.fillRect(this.x, this.y, this.w, this.h);
+      this.img.src = '/docs/assets/images/holland.png'
+      this.ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
     }
   
     top() {
