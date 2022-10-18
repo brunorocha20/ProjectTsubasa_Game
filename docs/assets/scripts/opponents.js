@@ -2,7 +2,7 @@ class Enemy {
     constructor(ctx) {
       this.ctx = ctx;
       this.x = 700;
-      this.y = Math.floor(Math.random() * 500) - 150;
+      this.y = Math.floor(Math.random() * 500) - 110;
       this.w = 90;
       this.h = 110;
       this.img = new Image();
@@ -32,9 +32,9 @@ class Enemy2 {
     constructor(ctx) {
       this.ctx = ctx;
       this.x = 700;
-      this.y = Math.floor(Math.random() * 500) - 50;
+      this.y = Math.floor(Math.random() * 500) - 45;
       this.w = 90;
-      this.h = 52;
+      this.h = 45;
       this.img = new Image();
     }
   

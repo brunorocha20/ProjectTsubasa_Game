@@ -14,9 +14,9 @@ class Game {
     this.height = 500;
     this.background = new Image();
     this.controls = null;
-    this.lifes = 4;
+    this.lifes = 5;
     this.invulnerable = false;
-    this.backSpeed = -3;
+    this.backSpeed = -4;
     this.backX = 0;
     this.background.src = 'docs/assets/images/actual field.jpg';
     this.currentImg = 0;
@@ -42,7 +42,7 @@ class Game {
     }
 
     start(){
-        this.tsubasa = new Player(40, 220, 75, 50, this.ctx);
+        this.tsubasa = new Player(40, 220, 66, 46, this.ctx);
         this.controls = new Controls(this.tsubasa);
         this.controls.keyboardEvents();
         this.intervalId = setInterval(this.update, 1000 / 60);
@@ -54,6 +54,7 @@ class Game {
         this.moveBackground();
         this.drawBackground();
         this.movePlayer();
+        this.tsubasa.newPos();
         this.tsubasa.draw();
         this.updateObstacles();
         this.checkGameOver();
@@ -68,17 +69,17 @@ class Game {
     updateObstacles() {
        // enemy 1
         for (let i = 0; i < this.obstacles1.length; i++) {
-          this.obstacles1[i].x -= 8;
+          this.obstacles1[i].x -= 7;
           this.obstacles1[i].draw();
         }
     
-        if (this.frames % 240 === 0) {
+        if (this.frames % 260 === 0) {
           this.obstacles1.push(new Enemy(this.ctx));
         }
 
         // enemy2
         for (let i = 0; i < this.obstacles2.length; i++) {
-            this.obstacles2[i].x -= 7;
+            this.obstacles2[i].x -= 6;
             this.obstacles2[i].draw();
         }
  
@@ -88,7 +89,7 @@ class Game {
 
         // enemy 3
         for (let i = 0; i < this.obstacles3.length; i++) {
-            this.obstacles3[i].x -= 10;
+            this.obstacles3[i].x -= 9;
             this.obstacles3[i].draw();
         }
       
@@ -104,24 +105,23 @@ class Game {
                     this.lifes--
                     this.invulnerable = true
                 } 
-                this.obstacles[i].x -= 5;
+                this.obstacles[i].x -= 4;
                 this.obstacles[i].draw();
             }
         }
-            if (this.frames % 205 === 0) {
+            if (this.frames % 240 === 0) {
                 this.obstacles = []
                 this.invulnerable = false;
                 
                 let x = 700;
                 //calculate the height of the columns/obstacles
-                let minHeight = 20;
-                let maxHeight = 250;
+                let minHeight = 30;
+                let maxHeight = 280;
                 let height = Math.floor(Math.random() * (maxHeight - minHeight + 1) + minHeight);
                 //this creates the gap
                 let gap = 120;
                 //top obstacle
                 this.obstacles.push(new Goalscore(x, height, 20, 30, this.ctx));
-          
                 //bottom obstacle
                 this.obstacles.push(new Goalscore(x, height + gap, 20, 30, this.ctx));
         }
@@ -167,20 +167,20 @@ class Game {
     }
 
     showLifes() {
-        this.ctx.font = '20px monospace';
+        this.ctx.font = '22px monospace';
         this.ctx.fillStyle = 'black';
         this.ctx.fillText(`Lifes: ${this.lifes}`, 580, 450);
     }
     
     score() {
-        this.ctx.font = '20px monospace';
+        this.ctx.font = '22px monospace';
         this.ctx.fillStyle = 'black';
         const score = Math.floor(this.frames / 50);
         this.ctx.fillText(`Score: ${score}`, 580, 50);
     }
 
     movePlayer(){
-        if(this.frames % 20 === 0){
+        if(this.frames % 12 === 0){
             this.currentImg = (this.currentImg + 1) % 2
             switch (this.currentImg){
                 case 0:
