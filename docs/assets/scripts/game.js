@@ -18,7 +18,7 @@ class Game {
     this.invulnerable = false;
     this.backSpeed = -3;
     this.backX = 0;
-    this.background.src = '/docs/assets/images/actual field.jpg';
+    this.background.src = 'docs/assets/images/actual field.jpg';
     this.currentImg = 0;
     }
 
@@ -187,10 +187,10 @@ for(let i = 0; i < this.obstacles3.length; i++){
             this.currentImg = (this.currentImg + 1) % 2
             switch (this.currentImg){
                 case 0:
-                    this.tsubasa.img.src = '/docs/assets/images/oliver_ball_sprite-removebg.png'
+                    this.tsubasa.img.src = 'docs/assets/images/oliver_ball_sprite-removebg.png'
                     break;
                 case 1:
-                    this.tsubasa.img.src = '/docs/assets/images/oliver-logo-removebg-preview.png'
+                    this.tsubasa.img.src = 'docs/assets/images/oliver-logo-removebg-preview.png'
                     break;    
         }
             /* if(this.tsubasa.img.src === '/docs/assets/images/oliver-logo-removebg-preview.png'){
