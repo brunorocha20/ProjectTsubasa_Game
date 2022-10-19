@@ -37,8 +37,8 @@ class Game {
     }
 
     moveBackground() {
-    this.backX += this.backSpeed;
-    this.backX %= this.width;
+        this.backX += this.backSpeed;
+        this.backX %= this.width;
     }
 
     start(){
@@ -69,31 +69,52 @@ class Game {
     updateObstacles() {
        // enemy 1
         for (let i = 0; i < this.obstacles1.length; i++) {
-          this.obstacles1[i].x -= 7;
-          this.obstacles1[i].draw();
+            if (this.frames < 1000) {
+                this.obstacles1[i].x -= 4.7;
+                this.obstacles1[i].draw();
+            } else if (this.frames > 1000 && this.frames < 2000) {
+                this.obstacles1[i].x -= 6.2;
+                this.obstacles1[i].draw();
+            } else if (this.frames > 2000) {
+                this.obstacles1[i].x -= 8;
+                this.obstacles1[i].draw();
+            }
         }
-    
-        if (this.frames % 260 === 0) {
-          this.obstacles1.push(new Enemy(this.ctx));
+        if (this.frames % 280 === 0) {
+            this.obstacles1.push(new Enemy(this.ctx));
         }
 
         // enemy2
         for (let i = 0; i < this.obstacles2.length; i++) {
-            this.obstacles2[i].x -= 6;
-            this.obstacles2[i].draw();
+            if (this.frames < 1000) {
+                this.obstacles2[i].x -= 4.3;
+                this.obstacles2[i].draw();
+            } else if (this.frames > 1000 && this.frames < 2000) {
+                this.obstacles2[i].x -= 4.9;
+                this.obstacles2[i].draw();
+            } else if (this.frames > 2000) {
+                this.obstacles2[i].x -= 5.8;
+                this.obstacles2[i].draw();
+            }
         }
- 
-        if (this.frames % 180 === 0) {
+        if (this.frames % 190 === 0) {
             this.obstacles2.push(new Enemy2(this.ctx));
         }
 
         // enemy 3
         for (let i = 0; i < this.obstacles3.length; i++) {
-            this.obstacles3[i].x -= 9;
-            this.obstacles3[i].draw();
+            if (this.frames < 1000) {
+                this.obstacles3[i].x -= 5;
+                this.obstacles3[i].draw();
+            } else if (this.frames > 1000 && this.frames < 2000) {
+                this.obstacles3[i].x -= 7;
+                this.obstacles3[i].draw();
+            } else if (this.frames > 2000) {
+                this.obstacles3[i].x -= 9;
+                this.obstacles3[i].draw();
+            }
         }
-      
-        if (this.frames % 300 === 0) {
+        if (this.frames % 320 === 0) {
             this.obstacles3.push(new Enemy3(this.ctx));
         }
 
@@ -102,14 +123,15 @@ class Game {
             for (let i = 0; i < this.obstacles.length; i++) {
            
                  if(this.tsubasa.x >= this.obstacles[0].x + this.obstacles[0].w && !this.invulnerable && !(this.tsubasa.y > this.obstacles[0].y && this.tsubasa.y < this.obstacles[1].y)){
-                    this.lifes--
-                    this.invulnerable = true
+                     this.invulnerable = true
+                     this.lifes--
+                    console.log('falhou baliza')
                 } 
                 this.obstacles[i].x -= 4;
                 this.obstacles[i].draw();
             }
         }
-            if (this.frames % 240 === 0) {
+            if (this.frames % 220 === 0) {
                 this.obstacles = []
                 this.invulnerable = false;
                 
@@ -135,6 +157,7 @@ class Game {
             if(this.tsubasa.crashWithGoal(this.obstacles[i])){
             this.obstacles.splice(i,1)
             this.lifes -= 1;
+            console.log('baliza')
             /* crashed = true */
         }
     }
@@ -142,6 +165,7 @@ class Game {
             if(this.tsubasa.crashWith(this.obstacles1[i])){
             this.obstacles1.splice(i,1)
             this.lifes -= 1;
+            console.log('GR')
             /* crashed = true */
         }
     }
@@ -149,6 +173,7 @@ class Game {
             if(this.tsubasa.crashWith(this.obstacles2[i])){
             this.obstacles2.splice(i,1)
             this.lifes -= 1;
+            console.log('german')
             /* crashed = true */
         }
     }
@@ -156,11 +181,11 @@ class Game {
             if(this.tsubasa.crashWith(this.obstacles3[i])){
             this.obstacles3.splice(i,1)
             this.lifes -= 1;
+            console.log('holandes')
            /*  crashed = true */
         }
     }
     }
-    
     
     stop() {
         clearInterval(this.intervalId);
@@ -169,14 +194,14 @@ class Game {
     showLifes() {
         this.ctx.font = '22px monospace';
         this.ctx.fillStyle = 'black';
-        this.ctx.fillText(`Lifes: ${this.lifes}`, 580, 450);
+        this.ctx.fillText(`Lifes: ${this.lifes}`, 540, 450);
     }
     
     score() {
         this.ctx.font = '22px monospace';
         this.ctx.fillStyle = 'black';
         const score = Math.floor(this.frames / 50);
-        this.ctx.fillText(`Score: ${score}`, 580, 50);
+        this.ctx.fillText(`Score: ${score}`, 540, 50);
     }
 
     movePlayer(){

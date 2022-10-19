@@ -23,16 +23,16 @@ class Player {
     }
     
     top() {
-      return this.y;
+      return this.y + 2;
     }
     bottom() {
-      return this.y + this.h;
+      return this.y + this.h - 2;
     }
     left() {
-      return this.x;
+      return this.x + 2;
     }
     right() {
-      return this.x + this.w;
+      return this.x + this.w -2;
     }
   
     crashWith(obstacle) {

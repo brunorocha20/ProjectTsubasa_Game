@@ -14,16 +14,16 @@ class Enemy {
     }
   
     top() {
-      return this.y + 10;
+      return this.y + 15;
     }
     bottom() {
-      return this.y + this.h - 10;
+      return this.y + this.h - 15;
     }
     left() {
-      return this.x + 40;
+      return this.x + 45;
     }
     right() {
-      return this.x + this.w - 40;
+      return this.x + this.w - 45;
     }
 }
 
@@ -77,7 +77,7 @@ class Enemy3 {
       return this.y + 20;
     }
     bottom() {
-      return this.y + this.h;
+      return this.y + this.h - 10;
     }
     left() {
       return this.x + 50;

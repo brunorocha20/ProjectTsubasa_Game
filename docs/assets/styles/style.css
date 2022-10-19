@@ -1,7 +1,18 @@
 body {
     padding: 0;
     text-align: center;
-    background-image: url('docs/assets/images/possible-background.jpg');
+    background-image: url('https://sm.ign.com/ign_pl/screenshot/default/untitled-87-4_xjx8.jpg');
+    background-size: 100vw;
+    background-repeat: no-repeat;
+}
+
+.logo {
+    width: 190px;
+    height: 120px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 40px;
 }
 
 #canvas{
@@ -28,7 +39,7 @@ body {
 #game-end p {
     font-size: 18px;
     /*  font-weight: bolder; */
-    color: aliceblue;
+    color: rgb(241, 205, 3);
     font-family: Jazz LET, fantasy;
     background-color: rgb(0 0 0 / 50%);
     border: 0;
@@ -88,6 +99,6 @@ body button:hover {
     width: 80px;
     height: 110px;
     padding: 9px;
-    background-color: #e4e4e473;
+    background-color: rgba(230, 196, 0, 0.518);
     border-radius: 5px;
 }
