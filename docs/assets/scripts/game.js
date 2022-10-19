@@ -42,7 +42,7 @@ class Game {
     }
 
     start(){
-        this.tsubasa = new Player(40, 220, 66, 46, this.ctx);
+        this.tsubasa = new Player(40, 220, 65, 45, this.ctx);
         this.controls = new Controls(this.tsubasa);
         this.controls.keyboardEvents();
         this.intervalId = setInterval(this.update, 1000 / 60);
@@ -128,35 +128,35 @@ class Game {
     }
 
     checkGameOver = () => {
-        let crashed = false
+  /*       let crashed = false */
         
 
         for(let i = 0; i < this.obstacles.length; i++){
             if(this.tsubasa.crashWithGoal(this.obstacles[i])){
             this.obstacles.splice(i,1)
             this.lifes -= 1;
-            crashed = true
+            /* crashed = true */
         }
     }
         for(let i = 0; i < this.obstacles1.length; i++){
             if(this.tsubasa.crashWith(this.obstacles1[i])){
             this.obstacles1.splice(i,1)
             this.lifes -= 1;
-            crashed = true
+            /* crashed = true */
         }
     }
         for(let i = 0; i < this.obstacles2.length; i++){
             if(this.tsubasa.crashWith(this.obstacles2[i])){
             this.obstacles2.splice(i,1)
             this.lifes -= 1;
-            crashed = true
+            /* crashed = true */
         }
     }
         for(let i = 0; i < this.obstacles3.length; i++){
             if(this.tsubasa.crashWith(this.obstacles3[i])){
             this.obstacles3.splice(i,1)
             this.lifes -= 1;
-            crashed = true
+           /*  crashed = true */
         }
     }
     }

@@ -4,21 +4,25 @@ class Controls {
     }
   
     keyboardEvents() {
-      window.addEventListener('keydown', (e) => {
+      document.addEventListener('keydown', (e) => {
         switch (e.code) {
           case 'ArrowUp':
-            if (this.tsubasa.y > 20) {
-              this.tsubasa.speed -= 2;
+            if (this.tsubasa.y > 15) {
+              this.tsubasa.speed -= 1;
+            } else {
+              this.tsubasa.speed = 0;
             }
             break;
           case 'ArrowDown':
-            if (this.tsubasa.y + this.tsubasa.h < 420) {
-              this.tsubasa.speed += 2;
+            if (this.tsubasa.y + this.tsubasa.h < 485) {
+              this.tsubasa.speed += 1;
+            } else {
+              this.tsubasa.speed = 0;
             }
             break;
         }
       });
-      window.addEventListener('keyup', (e) => {
+      document.addEventListener('keyup', (e) => {
       this.tsubasa.speed = 0;
     });
   }
