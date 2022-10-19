@@ -39,7 +39,7 @@ class Enemy2 {
     }
   
     draw() {
-      this.img.src = '/docs/assets/images/german.png'
+      this.img.src = 'docs/assets/images/german.png'
       this.ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
     }
   
@@ -69,7 +69,7 @@ class Enemy3 {
     }
   
     draw() {
-      this.img.src = '/docs/assets/images/holland.png'
+      this.img.src = 'docs/assets/images/holland.png'
       this.ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
     }
   

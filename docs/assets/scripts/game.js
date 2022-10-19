@@ -184,10 +184,10 @@ class Game {
             this.currentImg = (this.currentImg + 1) % 2
             switch (this.currentImg){
                 case 0:
-                    this.tsubasa.img.src = '/docs/assets/images/running1-removebg-preview.png'
+                    this.tsubasa.img.src = 'docs/assets/images/running1-removebg-preview.png'
                     break;
                 case 1:
-                    this.tsubasa.img.src = '/docs/assets/images/running2-removebg-preview.png'
+                    this.tsubasa.img.src = 'docs/assets/images/running2-removebg-preview.png'
                     break;    
             }
         }

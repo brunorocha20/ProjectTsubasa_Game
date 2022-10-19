@@ -1,7 +1,7 @@
 body {
     padding: 0;
     text-align: center;
-    background-image: url('/docs/assets/images/possible-background.jpg');
+    background-image: url('docs/assets/images/possible-background.jpg');
 }
 
 #canvas{

@@ -7,7 +7,7 @@ class Player {
       this.ctx = ctx;
       this.speed = 0;
       this.img = new Image();
-      this.img.src = '/docs/assets/images/running1-removebg-preview.png';
+      this.img.src = 'docs/assets/images/running1-removebg-preview.png';
     }
   
     newPos() {
