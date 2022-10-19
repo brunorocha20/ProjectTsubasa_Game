@@ -82,11 +82,11 @@ class Game {
                 this.obstacles1[i].draw();
             } else if (this.frames > 3000) {
                 this.backSpeed = -7;
-                this.obstacles1[i].x -= 12;
+                this.obstacles1[i].x -= 13;
                 this.obstacles1[i].draw();
             }
         }
-        if (this.frames % 280 === 0) {
+        if (this.frames % 190 === 0) {
             this.obstacles1.push(new Enemy(this.ctx));
         }
 
@@ -102,11 +102,11 @@ class Game {
                 this.obstacles2[i].x -= 7.2;
                 this.obstacles2[i].draw();
             } else if (this.frames > 3000) {
-                this.obstacles2[i].x -= 10;
+                this.obstacles2[i].x -= 11;
                 this.obstacles2[i].draw();
             }
         }
-        if (this.frames % 150 === 0) {
+        if (this.frames % 130 === 0) {
             this.obstacles2.push(new Enemy2(this.ctx));
         }
 
@@ -122,11 +122,11 @@ class Game {
                 this.obstacles3[i].x -= 10.1;
                 this.obstacles3[i].draw();
             } else if (this.frames > 3000) {
-                this.obstacles3[i].x -= 13;
+                this.obstacles3[i].x -= 14;
                 this.obstacles3[i].draw();
             }
         }
-        if (this.frames % 180 === 0) {
+        if (this.frames % 160 === 0) {
             this.obstacles3.push(new Enemy3(this.ctx));
         }
 
@@ -139,8 +139,19 @@ class Game {
                     this.lifes--
                     console.log('falhou baliza')
                 } 
-                this.obstacles[i].x -= 4;
-                this.obstacles[i].draw();
+                if (this.frames < 1000) {
+                    this.obstacles[i].x -= 4;
+                    this.obstacles[i].draw();
+                } else if (this.frames > 1000 && this.frames < 2000) {
+                    this.obstacles[i].x -= 5;
+                    this.obstacles[i].draw();
+                } else if (this.frames > 2000 && this.frames < 3000) {
+                    this.obstacles[i].x -= 6;
+                    this.obstacles[i].draw();
+                } else if (this.frames > 3000) {
+                    this.obstacles[i].x -= 7;
+                    this.obstacles[i].draw();
+                }
             }
         }
             if (this.frames % 200 === 0) {
