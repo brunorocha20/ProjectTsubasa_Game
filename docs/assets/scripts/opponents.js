@@ -14,16 +14,16 @@ class Enemy {
     }
   
     top() {
-      return this.y + 15;
+      return this.y + 10;
     }
     bottom() {
-      return this.y + this.h - 15;
+      return this.y + this.h - 10;
     }
     left() {
-      return this.x + 45;
+      return this.x + 35;
     }
     right() {
-      return this.x + this.w - 45;
+      return this.x + this.w - 35;
     }
 }
 
@@ -44,16 +44,16 @@ class Enemy2 {
     }
   
     top() {
-      return this.y + 30;
+      return this.y + 20;
     }
     bottom() {
-      return this.y + this.h - 15;
+      return this.y + this.h - 10;
     }
     left() {
-      return this.x + 15;
+      return this.x + 10;
     }
     right() {
-      return this.x + this.w - 30;
+      return this.x + this.w - 25;
     }
 }
 
@@ -74,16 +74,16 @@ class Enemy3 {
     }
   
     top() {
-      return this.y + 20;
+      return this.y + 15;
     }
     bottom() {
       return this.y + this.h - 10;
     }
     left() {
-      return this.x + 50;
+      return this.x + 40;
     }
     right() {
-      return this.x + this.w - 50;
+      return this.x + this.w - 40;
     }
 }
 
@@ -103,18 +103,18 @@ class Goalscore {
   }
 
   top() {
-    return this.y + 15;
+    return this.y + 10;
   }
 
   bottom() {
-    return this.y + this.h - 15;
+    return this.y + this.h - 10;
   }
 
   left() {
-    return this.x + 30;
+    return this.x + 25;
   }
 
   right() {
-    return this.x + this.w - 30;
+    return this.x + this.w - 25;
   }
 }

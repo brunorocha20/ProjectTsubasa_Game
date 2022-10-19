@@ -70,13 +70,19 @@ class Game {
        // enemy 1
         for (let i = 0; i < this.obstacles1.length; i++) {
             if (this.frames < 1000) {
-                this.obstacles1[i].x -= 4.7;
+                this.obstacles1[i].x -= 5.5;
                 this.obstacles1[i].draw();
             } else if (this.frames > 1000 && this.frames < 2000) {
-                this.obstacles1[i].x -= 6.2;
+                this.backSpeed = -5;
+                this.obstacles1[i].x -= 7;
                 this.obstacles1[i].draw();
-            } else if (this.frames > 2000) {
-                this.obstacles1[i].x -= 8;
+            } else if (this.frames > 2000 && this.frames < 3000) {
+                this.backSpeed = -6;
+                this.obstacles1[i].x -= 9;
+                this.obstacles1[i].draw();
+            } else if (this.frames > 3000) {
+                this.backSpeed = -7;
+                this.obstacles1[i].x -= 12;
                 this.obstacles1[i].draw();
             }
         }
@@ -87,51 +93,57 @@ class Game {
         // enemy2
         for (let i = 0; i < this.obstacles2.length; i++) {
             if (this.frames < 1000) {
-                this.obstacles2[i].x -= 4.3;
+                this.obstacles2[i].x -= 5.8;
                 this.obstacles2[i].draw();
             } else if (this.frames > 1000 && this.frames < 2000) {
-                this.obstacles2[i].x -= 4.9;
+                this.obstacles2[i].x -= 6.3;
                 this.obstacles2[i].draw();
-            } else if (this.frames > 2000) {
-                this.obstacles2[i].x -= 5.8;
+            } else if (this.frames > 2000 && this.frames < 3000) {
+                this.obstacles2[i].x -= 7.2;
+                this.obstacles2[i].draw();
+            } else if (this.frames > 3000) {
+                this.obstacles2[i].x -= 10;
                 this.obstacles2[i].draw();
             }
         }
-        if (this.frames % 190 === 0) {
+        if (this.frames % 150 === 0) {
             this.obstacles2.push(new Enemy2(this.ctx));
         }
 
         // enemy 3
         for (let i = 0; i < this.obstacles3.length; i++) {
             if (this.frames < 1000) {
-                this.obstacles3[i].x -= 5;
+                this.obstacles3[i].x -= 6.9;
                 this.obstacles3[i].draw();
             } else if (this.frames > 1000 && this.frames < 2000) {
-                this.obstacles3[i].x -= 7;
+                this.obstacles3[i].x -= 7.9;
                 this.obstacles3[i].draw();
-            } else if (this.frames > 2000) {
-                this.obstacles3[i].x -= 9;
+            } else if (this.frames > 2000 && this.frames < 3000) {
+                this.obstacles3[i].x -= 10.1;
+                this.obstacles3[i].draw();
+            } else if (this.frames > 3000) {
+                this.obstacles3[i].x -= 13;
                 this.obstacles3[i].draw();
             }
         }
-        if (this.frames % 320 === 0) {
+        if (this.frames % 180 === 0) {
             this.obstacles3.push(new Enemy3(this.ctx));
         }
 
         // adding the goalscores
         if(this.obstacles.length === 2){
             for (let i = 0; i < this.obstacles.length; i++) {
-           
-                 if(this.tsubasa.x >= this.obstacles[0].x + this.obstacles[0].w && !this.invulnerable && !(this.tsubasa.y > this.obstacles[0].y && this.tsubasa.y < this.obstacles[1].y)){
-                     this.invulnerable = true
-                     this.lifes--
+                           
+                 if(this.tsubasa.x >= this.obstacles[0].x + this.obstacles[0].w && !this.invulnerable && !(this.tsubasa.y > this.obstacles[0].y && this.tsubasa.y < this.obstacles[1].y) && this.tsubasa.x <= this.obstacles[0].x + this.obstacles[0].w){
+                    this.invulnerable = true
+                    this.lifes--
                     console.log('falhou baliza')
                 } 
                 this.obstacles[i].x -= 4;
                 this.obstacles[i].draw();
             }
         }
-            if (this.frames % 220 === 0) {
+            if (this.frames % 200 === 0) {
                 this.obstacles = []
                 this.invulnerable = false;
                 
@@ -150,15 +162,11 @@ class Game {
     }
 
     checkGameOver = () => {
-  /*       let crashed = false */
-        
-
         for(let i = 0; i < this.obstacles.length; i++){
             if(this.tsubasa.crashWithGoal(this.obstacles[i])){
             this.obstacles.splice(i,1)
             this.lifes -= 1;
             console.log('baliza')
-            /* crashed = true */
         }
     }
         for(let i = 0; i < this.obstacles1.length; i++){
@@ -166,7 +174,6 @@ class Game {
             this.obstacles1.splice(i,1)
             this.lifes -= 1;
             console.log('GR')
-            /* crashed = true */
         }
     }
         for(let i = 0; i < this.obstacles2.length; i++){
@@ -174,7 +181,6 @@ class Game {
             this.obstacles2.splice(i,1)
             this.lifes -= 1;
             console.log('german')
-            /* crashed = true */
         }
     }
         for(let i = 0; i < this.obstacles3.length; i++){
@@ -182,12 +188,13 @@ class Game {
             this.obstacles3.splice(i,1)
             this.lifes -= 1;
             console.log('holandes')
-           /*  crashed = true */
         }
     }
     }
     
     stop() {
+        const score = Math.floor(this.frames / 50);
+        localStorage.setItem('highscore', score )
         clearInterval(this.intervalId);
     }
 

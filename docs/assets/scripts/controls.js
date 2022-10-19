@@ -8,14 +8,14 @@ class Controls {
         switch (e.code) {
           case 'ArrowUp':
             if (this.tsubasa.y > 15) {
-              this.tsubasa.speed -= 1;
+              this.tsubasa.speed -= 2;
             } else {
               this.tsubasa.speed = 0;
             }
             break;
           case 'ArrowDown':
             if (this.tsubasa.y + this.tsubasa.h < 485) {
-              this.tsubasa.speed += 1;
+              this.tsubasa.speed += 2;
             } else {
               this.tsubasa.speed = 0;
             }

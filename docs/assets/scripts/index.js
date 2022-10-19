@@ -1,4 +1,6 @@
 window.onload = () => {
+  let highScore = localStorage.getItem('highscore')
+  console.log(highScore)
     document.getElementById('start-button').onclick = () => {
       startGame();
       document.getElementById("game-intro").style.display = "none";

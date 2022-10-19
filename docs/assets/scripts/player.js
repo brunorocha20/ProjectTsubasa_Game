@@ -12,11 +12,7 @@ class Player {
   
     newPos() {
       this.y += this.speed
-      /* if (this.y > 10 && (this.y + this.h < 490)) {
-      this.speed = 0
-// getting stuck
-      } */
-  } 
+    } 
 
     draw() {
       this.ctx.drawImage(this.img, this.x , this.y, this.w, this.h);
