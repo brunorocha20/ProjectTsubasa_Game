@@ -20,6 +20,8 @@ class Game {
     this.backX = 0;
     this.background.src = 'docs/assets/images/actual field.jpg';
     this.currentImg = 0;
+    this.song = new Audio('docs/assets/sounds/song.mp3');
+    this.song.loop = false;
     }
 
 
@@ -46,6 +48,7 @@ class Game {
         this.controls = new Controls(this.tsubasa);
         this.controls.keyboardEvents();
         this.intervalId = setInterval(this.update, 1000 / 60);
+        this.song.play();
     }
 
     update = () => {
@@ -63,11 +66,13 @@ class Game {
         if(this.lifes <= 0){  
         document.getElementById("game-end").style.display = "flex";
         this.stop();
+        this.song.pause();
+        this.song.currentTime = 0;
         }
     }
 
     updateObstacles() {
-       // enemy 1
+        // enemy 1 goalkeeper
         for (let i = 0; i < this.obstacles1.length; i++) {
             if (this.frames < 1500) {
                 this.obstacles1[i].x -= 5.5;
@@ -84,9 +89,13 @@ class Game {
                 this.backSpeed = -7;
                 this.obstacles1[i].x -= 13;
                 this.obstacles1[i].draw();
-            } else if (this.frames > 4500) {
+            } else if (this.frames > 4500 && this.frames < 6500) {
                 this.backSpeed = -8;
                 this.obstacles1[i].x -= 14.5;
+                this.obstacles1[i].draw();
+            } else if (this.frames > 6500) {
+                this.backSpeed = -9;
+                this.obstacles1[i].x -= 16.5;
                 this.obstacles1[i].draw();
             }
         }
@@ -94,7 +103,7 @@ class Game {
             this.obstacles1.push(new Enemy(this.ctx));
         }
 
-        // enemy2
+        // enemy 2 german
         for (let i = 0; i < this.obstacles2.length; i++) {
             if (this.frames < 1500) {
                 this.obstacles2[i].x -= 6;
@@ -108,8 +117,11 @@ class Game {
             } else if (this.frames > 3500 && this.frames < 4500) {
                 this.obstacles2[i].x -= 11.5;
                 this.obstacles2[i].draw();
-            } else if (this.frames > 4500) {
+            } else if (this.frames > 4500 && this.frames < 6500) {
                 this.obstacles2[i].x -= 13;
+                this.obstacles2[i].draw();
+            } else if (this.frames > 6500) {
+                this.obstacles2[i].x -= 15;
                 this.obstacles2[i].draw();
             }
         }
@@ -117,7 +129,7 @@ class Game {
             this.obstacles2.push(new Enemy2(this.ctx));
         }
 
-        // enemy 3
+        // enemy 3 holland
         for (let i = 0; i < this.obstacles3.length; i++) {
             if (this.frames < 1500) {
                 this.obstacles3[i].x -= 7;
@@ -131,8 +143,11 @@ class Game {
             } else if (this.frames > 3500 && this.frames < 4500) {
                 this.obstacles3[i].x -= 14.5;
                 this.obstacles3[i].draw();
-            } else if (this.frames > 4500) {
+            } else if (this.frames > 4500 && this.frames < 6500) {
                 this.obstacles3[i].x -= 17;
+                this.obstacles3[i].draw();
+            } else if (this.frames > 6500) {
+                this.obstacles3[i].x -= 18.5;
                 this.obstacles3[i].draw();
             }
         }
@@ -161,8 +176,11 @@ class Game {
                 } else if (this.frames >= 3500 && this.frames < 4500) {
                     this.obstacles[i].x -= 7;
                     this.obstacles[i].draw();
-                } else if (this.frames >= 4500) {
+                } else if (this.frames >= 4500 && this.frames < 6500) {
                     this.obstacles[i].x -= 8;
+                    this.obstacles[i].draw();
+                } else if (this.frames >= 6500) {
+                    this.obstacles[i].x -= 9;
                     this.obstacles[i].draw();
                 }
             }
@@ -217,8 +235,6 @@ class Game {
     }
     
     stop() {
-        const score = Math.floor(this.frames / 50);
-        localStorage.setItem('highscore', score )
         clearInterval(this.intervalId);
     }
 
