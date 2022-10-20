@@ -7,6 +7,7 @@ class Game {
     this.obstacles1 = [];
     this.obstacles2 = [];
     this.obstacles3 = [];
+    this.ballObs = [];
     this.cone = [];
     this.intervalId = null;
     this.frames = 0;
@@ -155,6 +156,35 @@ class Game {
             this.obstacles3.push(new Enemy3(this.ctx));
         }
 
+
+        // enemy 4 ball
+        for (let i = 0; i < this.ballObs.length; i++) {
+            if (this.frames < 1500) {
+                this.ballObs[i].x -= 10;
+                this.ballObs[i].draw();
+            } else if (this.frames > 1500 && this.frames < 2500) {
+                this.ballObs[i].x -= 12;
+                this.ballObs[i].draw();
+            } else if (this.frames > 2500 && this.frames < 3500) {
+                this.ballObs[i].x -= 14;
+                this.ballObs[i].draw();
+            } else if (this.frames > 3500 && this.frames < 4500) {
+                this.ballObs[i].x -= 16;
+                this.ballObs[i].draw();
+            } else if (this.frames > 4500 && this.frames < 6500) {
+                this.ballObs[i].x -= 18;
+                this.ballObs[i].draw();
+            } else if (this.frames > 6500) {
+                this.ballObs[i].x -= 20;
+                this.ballObs[i].draw();
+            }
+        }
+        if (this.frames % 85 === 0) {
+        this.ballObs.push(new Ball(this.ctx));
+        }
+
+
+
         // adding the goalscores
         if(this.obstacles.length === 2){
             for (let i = 0; i < this.obstacles.length; i++) {
@@ -230,6 +260,13 @@ class Game {
             this.obstacles3.splice(i,1)
             this.lifes -= 1;
             console.log('holandes')
+        }
+    }
+         for(let i = 0; i < this.ballObs.length; i++){
+            if(this.tsubasa.crashWith(this.ballObs[i])){
+            this.ballObs.splice(i,1)
+            this.lifes -= 1;
+            console.log('bola')
         }
     }
     }
