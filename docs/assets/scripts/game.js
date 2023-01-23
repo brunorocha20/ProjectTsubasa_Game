@@ -77,23 +77,23 @@ class Game {
       if (this.frames < 1500) {
         this.obstacles1[i].x -= 5.5;
         this.obstacles1[i].draw();
-      } else if (this.frames > 1500 && this.frames < 2500) {
+      } else if (this.frames >= 1500 && this.frames < 2500) {
         this.backSpeed = -5;
         this.obstacles1[i].x -= 7;
         this.obstacles1[i].draw();
-      } else if (this.frames > 2500 && this.frames < 3500) {
+      } else if (this.frames >= 2500 && this.frames < 3500) {
         this.backSpeed = -6;
         this.obstacles1[i].x -= 9;
         this.obstacles1[i].draw();
-      } else if (this.frames > 3500 && this.frames < 4500) {
+      } else if (this.frames >= 3500 && this.frames < 4500) {
         this.backSpeed = -7;
         this.obstacles1[i].x -= 13;
         this.obstacles1[i].draw();
-      } else if (this.frames > 4500 && this.frames < 6500) {
+      } else if (this.frames >= 4500 && this.frames < 6500) {
         this.backSpeed = -8;
         this.obstacles1[i].x -= 14.5;
         this.obstacles1[i].draw();
-      } else if (this.frames > 6500) {
+      } else if (this.frames >= 6500) {
         this.backSpeed = -9;
         this.obstacles1[i].x -= 16.5;
         this.obstacles1[i].draw();
@@ -108,19 +108,19 @@ class Game {
       if (this.frames < 1500) {
         this.obstacles2[i].x -= 6;
         this.obstacles2[i].draw();
-      } else if (this.frames > 1500 && this.frames < 2500) {
+      } else if (this.frames >= 1500 && this.frames < 2500) {
         this.obstacles2[i].x -= 7.8;
         this.obstacles2[i].draw();
-      } else if (this.frames > 2500 && this.frames < 3500) {
+      } else if (this.frames >= 2500 && this.frames < 3500) {
         this.obstacles2[i].x -= 8.7;
         this.obstacles2[i].draw();
-      } else if (this.frames > 3500 && this.frames < 4500) {
+      } else if (this.frames >= 3500 && this.frames < 4500) {
         this.obstacles2[i].x -= 11.5;
         this.obstacles2[i].draw();
-      } else if (this.frames > 4500 && this.frames < 6500) {
+      } else if (this.frames >= 4500 && this.frames < 6500) {
         this.obstacles2[i].x -= 13;
         this.obstacles2[i].draw();
-      } else if (this.frames > 6500) {
+      } else if (this.frames >= 6500) {
         this.obstacles2[i].x -= 15;
         this.obstacles2[i].draw();
       }
@@ -134,19 +134,19 @@ class Game {
       if (this.frames < 1500) {
         this.obstacles3[i].x -= 7;
         this.obstacles3[i].draw();
-      } else if (this.frames > 1500 && this.frames < 2500) {
+      } else if (this.frames >= 1500 && this.frames < 2500) {
         this.obstacles3[i].x -= 8.5;
         this.obstacles3[i].draw();
-      } else if (this.frames > 2500 && this.frames < 3500) {
+      } else if (this.frames >= 2500 && this.frames < 3500) {
         this.obstacles3[i].x -= 11;
         this.obstacles3[i].draw();
-      } else if (this.frames > 3500 && this.frames < 4500) {
+      } else if (this.frames >= 3500 && this.frames < 4500) {
         this.obstacles3[i].x -= 14.5;
         this.obstacles3[i].draw();
-      } else if (this.frames > 4500 && this.frames < 6500) {
+      } else if (this.frames >= 4500 && this.frames < 6500) {
         this.obstacles3[i].x -= 17;
         this.obstacles3[i].draw();
-      } else if (this.frames > 6500) {
+      } else if (this.frames >= 6500) {
         this.obstacles3[i].x -= 18.5;
         this.obstacles3[i].draw();
       }
@@ -160,19 +160,19 @@ class Game {
       if (this.frames < 1500) {
         this.ballObs[i].x -= 10;
         this.ballObs[i].draw();
-      } else if (this.frames > 1500 && this.frames < 2500) {
+      } else if (this.frames >= 1500 && this.frames < 2500) {
         this.ballObs[i].x -= 12;
         this.ballObs[i].draw();
-      } else if (this.frames > 2500 && this.frames < 3500) {
+      } else if (this.frames >= 2500 && this.frames < 3500) {
         this.ballObs[i].x -= 14;
         this.ballObs[i].draw();
-      } else if (this.frames > 3500 && this.frames < 4500) {
+      } else if (this.frames >= 3500 && this.frames < 4500) {
         this.ballObs[i].x -= 16;
         this.ballObs[i].draw();
-      } else if (this.frames > 4500 && this.frames < 6500) {
+      } else if (this.frames >= 4500 && this.frames < 6500) {
         this.ballObs[i].x -= 18;
         this.ballObs[i].draw();
-      } else if (this.frames > 6500) {
+      } else if (this.frames >= 6500) {
         this.ballObs[i].x -= 20;
         this.ballObs[i].draw();
       }
@@ -238,7 +238,7 @@ class Game {
       if (this.tsubasa.crashWithGoal(this.obstacles[i])) {
         this.obstacles.splice(i, 1);
         this.lifes -= 1;
-        console.log('baliza');
+        console.log('goalscore');
       }
     }
     for (let i = 0; i < this.obstacles1.length; i++) {
@@ -259,14 +259,14 @@ class Game {
       if (this.tsubasa.crashWith(this.obstacles3[i])) {
         this.obstacles3.splice(i, 1);
         this.lifes -= 1;
-        console.log('holandes');
+        console.log('nederlands');
       }
     }
     for (let i = 0; i < this.ballObs.length; i++) {
       if (this.tsubasa.crashWith(this.ballObs[i])) {
         this.ballObs.splice(i, 1);
         this.lifes -= 1;
-        console.log('bola');
+        console.log('fireball');
       }
     }
   };
@@ -289,7 +289,7 @@ class Game {
   }
 
   movePlayer() {
-    if (this.frames % 12 === 0) {
+    if (this.frames % 14 === 0) {
       this.currentImg = (this.currentImg + 1) % 2;
       switch (this.currentImg) {
         case 0:
